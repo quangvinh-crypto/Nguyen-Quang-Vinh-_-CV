@@ -1,0 +1,13 @@
+# Ignore everything by default
+*
+
+# Keep repository essentials
+!.gitignore
+!README.md
+
+# Keep CV source/output files requested
+!main.tex
+!mai.text
+!main.pdf
+!nguyenquangvinh.pdf
+!nguyen quang vinh.pdf

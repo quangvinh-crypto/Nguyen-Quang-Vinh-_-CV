@@ -1,0 +1,226 @@
+\documentclass[10pt,A4]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[default]{sourcesanspro}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage{xstring, xifthen}
+\usepackage{moresize}
+\usepackage{fontawesome}
+\newcommand{\vcenteredinclude}[1]{\begingroup
+\setbox0=\hbox{\includegraphics{#1}}%
+\parbox{\wd0}{\box0}\endgroup}
+\newcommand*{\vcenteredhbox}[1]{\begingroup
+\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+\newcommand{\icon}[3] { 							
+	\makebox(#2, #2){\textcolor{maincol}{\csname fa#1\endcsname}}
+}	
+\newcommand{\icontext}[4]{ 						
+	\vcenteredhbox{\icon{#1}{#2}{#3}}\hspace{4pt}\parbox[t]{\dimexpr0.82\mpwidth\relax}{\raggedright\setlength{\parskip}{0pt}\setlength{\baselineskip}{13pt}\textcolor{#4}{#3}}
+}
+\newcommand{\iconhref}[5]{ 						
+    \vcenteredhbox{\icon{#1}{#2}{#5}}\hspace{4pt}\parbox[t]{\dimexpr0.82\mpwidth\relax}{\raggedright\setlength{\parskip}{0pt}\setlength{\baselineskip}{13pt}\href{#4}{\textcolor{#5}{\nolinkurl{#3}}}}
+}
+\newcommand{\iconemail}[5]{ 						
+    \vcenteredhbox{\icon{#1}{#2}{#5}}\hspace{4pt}\parbox[t]{\dimexpr0.82\mpwidth\relax}{\raggedright\setlength{\parskip}{0pt}\setlength{\baselineskip}{13pt}\href{mailto:#4}{\textcolor{#5}{\nolinkurl{#3}}}}
+}
+\usepackage{paracol}
+\usepackage[a4paper]{geometry}
+\geometry{top=0.8cm, bottom=0.8cm, left=1cm, right=1cm}
+\usepackage{fancyhdr}
+\pagestyle{empty}
+\setlength{\parindent}{0mm}
+\usepackage{array}
+\usepackage{tabularx}
+\newcolumntype{x}[1]{%
+>{\raggedleft\hspace{0pt}}p{#1}}%
+\usepackage{graphicx}
+\usepackage{tikz}				
+\usetikzlibrary{shapes, backgrounds,mindmap, trees}
+\usepackage{transparent}
+\usepackage{color}
+\definecolor{maincol}{RGB}{ 225, 0, 0 }
+\definecolor{darkcol}{RGB}{ 70, 70, 70 }
+\definecolor{lightcol}{RGB}{245,245,245}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\urlstyle{same}
+\newcommand{\mpwidth}{\linewidth-\fboxsep-\fboxsep}
+\newcommand{\cvlist}[1] {
+	\begin{itemize}{#1}\end{itemize}
+}
+\newcommand{\cvtext}[1] {
+	\parbox{\mpwidth}{#1}
+}
+\newcommand{\cvsection}[1] {
+	\vspace{8pt}
+	\cvtext{
+		\textbf{\LARGE{\textcolor{darkcol}{\uppercase{#1}}}}\\[-4pt]
+		\textcolor{maincol}{ \rule{0.1\textwidth}{2pt} } \\
+	}
+}
+\newcommand{\cvskill}[3] {
+	\begin{tabular*}{1\mpwidth}{p{0.72\mpwidth}  r}
+  		\textcolor{black}{\textbf{#1}} & \textcolor{maincol}{#2}\\
+	\end{tabular*}%
+	
+	\hspace{4pt}
+	\begin{tikzpicture}[scale=1,rounded corners=2pt,very thin]
+		\fill [lightcol] (0,0) rectangle (1\mpwidth, 0.15);
+		\fill [maincol] (0,0) rectangle (#3\mpwidth, 0.15);
+	\end{tikzpicture}%
+}
+\newcommand{\cvevent}[7] {
+	\parbox{\mpwidth}{
+		\begin{tabular*}{1\mpwidth}{p{0.72\mpwidth}  r}
+	 		\textcolor{black}{\textbf{#2}} & \colorbox{maincol}{\makebox[0.25\mpwidth]{\textcolor{white}{#1}}} \\
+			\textcolor{maincol}{\textbf{#3}} & \\
+		\end{tabular*}\\[8pt]
+	
+		\ifthenelse{\isempty{#4}}{}{
+			\cvtext{#4}\\
+		}
+	}
+
+	\ifthenelse{\isempty{#5}}{}{
+		\vspace{9pt}
+		{#5}
+	}
+
+	\ifthenelse{\isempty{#6}}{}{
+		\vspace{9pt}
+		\cvtext{\textbf{Technologies include:}}\\
+		{#6}
+	}
+
+	\ifthenelse{\isempty{#7}}{}{
+		\vspace{9pt}
+		\cvtext{\textbf{Achievements include:}}\\
+		{#7}
+	}
+	\vspace{14pt}
+}
+\newcommand{\cvmetaevent}[4] {
+	\textcolor{maincol} {\cvtext{\textbf{\begin{flushleft}#1\end{flushleft}}}}
+
+	\ifthenelse{\isempty{#2}}{}{
+	\textcolor{darkcol} {\cvtext{\textbf{#2}} }
+	}
+
+	\ifthenelse{\isempty{#3}}{}{
+		\cvtext{{ \textcolor{darkcol} {#3} }}\\
+	}
+
+	\cvtext{#4}\\[14pt]
+}
+\newcommand{\cvqrcode}[1] {
+	\begin{center}
+		\includegraphics[width={#1}\mpwidth]{qrcode}
+	\end{center}
+}
+\begin{document}
+\fontsize{12.5pt}{15.2pt}\selectfont
+\columnratio{0.325}
+\setlength{\columnsep}{1.8em}
+\setlength{\columnseprule}{4pt}
+\colseprulecolor{lightcol}
+\begin{paracol}{2}
+	\begin{leftcolumn}
+		\includegraphics[width=\linewidth]{img/z7593841689201_030432ea11a567cbbdcff5eab5e65c2d.jpg}
+		\cvtext{\begin{center}\Large\textbf{Nguyen Quang Vinh}\end{center}}
+		\par
+		\cvsection{CONTACT}
+
+		\begin{tabularx}{\mpwidth}{@{}p{0.10\mpwidth}>{\raggedright\arraybackslash}X@{}}
+			\icon{MapMarker}{10}{black}   & 199 Doc Lap Street, Tan Phu District, Ho Chi Minh City                              \\[2pt]
+			\icon{Github}{10}{black}      & \href{https://github.com/quangvinh-crypto}{\nolinkurl{github.com/quangvinh-crypto}} \\[2pt]
+			\icon{MobilePhone}{10}{black} & 0939857204                                                                          \\[2pt]
+			\icon{Envelope}{10}{black}    & \href{mailto:nguyenvinh122004@gmail.com}{\nolinkurl{nguyenvinh122004@gmail.com}}
+		\end{tabularx}
+
+		\vspace{2pt}
+		\cvsection{TECHNICAL SKILLS}
+
+		\cvtext{\raggedright
+			\textbf{Frameworks:} ASP.NET Core (MVC, Web API), NodeJs, ReactJs.\\
+			\textbf{Languages:} C\#, JavaScript, HTML, CSS.\\
+			\textbf{Databases:} SQL Server, MongoDB, MySQL.\\
+			\textbf{Tools:} Jira , Postman. \par}
+
+		\cvsection{CERTIFICATES}
+
+		{\renewcommand{\arraystretch}{0.9}
+			\begin{tabular}{@{}>{\raggedright\arraybackslash}p{\mpwidth}@{}}
+				\textbf{Certificate CEFR B1:}                           \\
+				11/05/2024                                              \\
+				\textbf{Communication and Teamwork Skills Certificate:} \\
+				16/04/2025                                              \\
+				\textbf{Evidence:} \href{https://drive.google.com/drive/folders/1_0l7TrobdJ48XxryUvL7tWA2IRo8M4es?usp=drive_link}{\nolinkurl{https://drive.google.com/drive/folders/1_0l7TrobdJ48XxryUvL7tWA2IRo8M4es?usp=drive_link}}
+			\end{tabular}
+		}
+
+		\vspace{2pt}
+
+	\end{leftcolumn}
+	\begin{rightcolumn}
+		\fcolorbox{white}{darkcol}{\begin{minipage}[c][3.0cm][c]{1\mpwidth}
+				\begin {center}
+				\huge{\makebox[\linewidth][c]{\textbf{\textcolor{white}{Intern Developer}}}} \\[-8pt]
+				\textcolor{white}{ \rule{0.1\textwidth}{1.25pt} } \\[4pt]
+				\end {center}
+			\end{minipage}} \\[8pt]
+		\vspace{-10pt}
+		\cvsection{ABOUT ME}
+
+		\cvtext{Fourth-year Software Engineering student focused on fullstack development, with experience developing e-commerce web applications and backend systems. Seeking a Backend Internship to apply and expand my backend engineering skills.}
+		\vspace{0pt}
+		\cvsection{EDUCATION}
+
+		\cvtext{\textbf{SOFTWARE ENGINEER}\\
+			Ho Chi Minh City University of Technology (HUTECH)\hfill 2022 - 2026\\
+			GPA: 3.40, 2 Certificates of Merit.}
+		\vspace{0pt}
+		\cvsection{PROJECTS}
+		\begingroup
+		\sloppy
+
+		\begin{minipage}{\mpwidth}
+			\begin{tabular*}{\mpwidth}{l@{\extracolsep{\fill}}r}
+				\textbf{E-COMMERCE} & \textbf{20/02/2026 - 09/03/2026} \\
+			\end{tabular*}
+			\begin{itemize}
+				\raggedright
+				\setlength{\itemsep}{2pt}
+				\setlength{\parskip}{0pt}
+				\setlength{\parsep}{0pt}
+				\setlength{\topsep}{2pt}
+				\item Developed a responsive e-commerce platform with backend and React.js frontend for product browsing, cart management, and checkout.
+				\item Backend follows layered architecture with Redis (caching), Cloudinary (media storage), and OpenSearch (product search).
+				\item \textbf{Tech:} React.js, JavaScript, REST API, Redis, Cloudinary, OpenSearch.
+				\item \textbf{Github:} \href{https://github.com/quangvinh-crypto/E-commerce.git}{\nolinkurl{https://github.com/quangvinh-crypto/E-commerce.git}}
+			\end{itemize}
+		\end{minipage}
+
+		\vspace{10pt}
+
+		\begin{minipage}{\mpwidth}
+			\begin{tabular*}{\mpwidth}{l@{\extracolsep{\fill}}r}
+				\textbf{WEBSITE EVENT MANAGEMENT} & \textbf{21/09/2025 - 07/12/2025} \\
+			\end{tabular*}
+			\begin{itemize}
+				\raggedright
+				\setlength{\itemsep}{2pt}
+				\setlength{\parskip}{0pt}
+				\setlength{\parsep}{0pt}
+				\setlength{\topsep}{2pt}
+				\item Built a full-stack event management platform with role-based access, approval workflows, and online ticket booking.
+				\item Integrated MoMo, VNPay, QR e-ticket generation, email confirmation, SignalR group chat, and Gemini content generation.
+				\item \textbf{Tech:} ASP.NET Core 9, C\#, EF Core, SQL Server, SignalR, Gemini AI, Cloudinary, MoMo, VNPay.
+				\item \textbf{Github:} \href{https://github.com/quangvinhcrypto/Website_quanlysukien_hoithao.git}{\nolinkurl{https://github.com/quangvinhcrypto/Website_quanlysukien_hoithao.git}}
+			\end{itemize}
+		\end{minipage}
+		\endgroup
+
+	\end{rightcolumn}
+\end{paracol}
+\end{document}
